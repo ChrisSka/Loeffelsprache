@@ -1,0 +1,123 @@
+/* ---- THEME TOKENS ---------------------------------------------------- */
+    :root{ /* Dark (default) */
+      --bg1: #0f1020;
+      --bg2: #1a1c3a;
+      --card: #121326cc;
+      --text: #f6f7fb;
+      --muted: #c9cbe3;
+      --accent: #8be9fd;
+      --accent-2: #bd93f9;
+      --ok: #50fa7b;
+      --warn: #ffb86c;
+      --err: #ff5555;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    :root.light{ /* Light override (per Switch) */
+      --bg1:#f6f7fb; --bg2:#eaeefc; --card:#ffffffdd; --text:#0c0d1b; --muted:#535a75;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% -10%, #2a2e72 0%, transparent 70%),
+        radial-gradient(1200px 800px at 110% 10%, #3b1c66 0%, transparent 60%),
+        linear-gradient(160deg,var(--bg1),var(--bg2));
+      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      overflow-x: hidden;
+    }
+    header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+    .logo{
+      width:60px;height:60px;border-radius:14px;
+      background: linear-gradient(160deg,#ffd166,#ef476f);
+      box-shadow: var(--shadow); display:grid;place-items:center;
+    }
+    .logo svg{width:38px;height:38px;filter: drop-shadow(0 2px 8px rgba(0,0,0,.35))}
+    h1{margin:0;font-size:clamp(22px,3.6vw,34px);letter-spacing:.3px}
+    .sub{color:var(--muted);margin-top:4px}
+
+    .grid{display:grid;gap:18px;grid-template-columns: 1fr 1fr;}
+    @media (max-width:1000px){.grid{grid-template-columns:1fr}}
+    .card{
+      background: var(--card); border:1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(6px);
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      padding:16px; position:relative; overflow:hidden;
+    }
+    .card h2{margin:0 0 10px 0; font-size:18px}
+    textarea{
+      width:100%; min-height:220px; resize:vertical;
+      background:#0c0d1b; color:var(--text); border:1px solid rgba(255,255,255,.08);
+      border-radius:12px; padding:12px; outline:none;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
+    }
+    :root.light textarea{background:#fff;border-color:rgba(0,0,0,.08);box-shadow: inset 0 0 0 1px rgba(0,0,0,.06)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 6px;}
+    .btn{
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      color:var(--text); padding:8px 12px; border-radius:12px; cursor:pointer;
+      display:inline-flex;align-items:center;gap:8px;transition:transform .06s ease, border-color .2s ease;
+      user-select:none;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn:hover{border-color: rgba(255,255,255,.28)}
+    :root.light .btn{border-color:rgba(0,0,0,.15);background:linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.02))}
+    :root.light .btn:hover{border-color:rgba(0,0,0,.35)}
+    .btn.accent{border-color:transparent;background:linear-gradient(180deg,var(--accent),#5ed2ed); color:#082530}
+    .btn.purple{border-color:transparent;background:linear-gradient(180deg,var(--accent-2),#8a67f3)}
+    .btn.ghost{background:transparent}
+
+    .chip{font-size:12px;color:#0a1a12;background:linear-gradient(180deg,#b4f5c5,#7af0a0);padding:4px 10px;border-radius:999px;margin-left:auto}
+    .stats{font-size:12px;color:var(--muted)}
+    .row{display:flex;gap:10px;align-items:center;justify-content:space-between}
+    .settings{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    select, .toggle{
+      border:1px solid rgba(255,255,255,.14);
+      background:#0d0f22;color:var(--text);border-radius:12px;padding:8px 12px
+    }
+    :root.light select, :root.light .toggle{background:#fff;border-color:rgba(0,0,0,.15);color:#0c0d1b}
+    .toggle{display:inline-flex;align-items:center;gap:10px;padding:6px 10px}
+    .switch{
+      --w:42px; --h:22px;
+      inline-size: var(--w); block-size: var(--h); border-radius: 999px; position:relative;
+      background:#0a0b18;border:1px solid rgba(255,255,255,.18); cursor:pointer;
+      transition:background .2s ease, border-color .2s ease
+    }
+    .switch::after{
+      content:""; position:absolute; inset:2px; inline-size: calc(var(--h) - 4px); block-size: calc(var(--h) - 4px);
+      border-radius:999px; background:linear-gradient(180deg,#fff,#cfd5ff);
+      transform: translateX(0); transition: transform .2s ease;
+      box-shadow: 0 1px 6px rgba(0,0,0,.45);
+    }
+    .switch[data-on="true"]{background:#193a2b;border-color:#56e69b}
+    .switch[data-on="true"]::after{transform: translateX(calc(var(--w) - var(--h)))}
+
+    .footer-note{color:var(--muted); font-size:12px; margin-top:12px}
+    .toasts{position:fixed; right:18px; bottom:18px; display:flex; flex-direction:column; gap:8px; z-index:9999}
+    .toast{
+      background:#0d0f22cc; border:1px solid rgba(255,255,255,.18); backdrop-filter: blur(6px);
+      color:var(--text); padding:10px 12px; border-radius:12px; box-shadow: var(--shadow); font-size:14px
+    }
+
+    /* Deko */
+    .bg-spoons{
+    position: fixed;   /* bleibt am Viewport, scrollt nicht mit */
+    top: -40px;
+    right: -60px;
+    width: min(80vw, 900px);  /* skaliert sauber */
+    opacity: .75;               /* Sichtbarkeit steuern wir am SVG */
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;               /* hinter dem Inhalt */
+    }
+    .bg-spoons svg{
+    width: 100%;
+    height: auto;
+    opacity: .15;             /* leichte Transparenz */
+    }
+    .wrap{max-width:1100px;margin:40px auto;padding:24px}
+    .mode{margin-left:auto; display:flex; align-items:center; gap:10px}
+    .link{color:var(--accent)}
