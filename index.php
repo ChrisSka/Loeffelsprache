@@ -316,7 +316,7 @@
     }
 
     // utils
-    const escapeReg = (s)=> s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const escapeReg = (s) => s.replace(/[-/\\^$*+?.()|[\]{}]/g, (m) => '\\' + m);
 
     // --- UI actions ----------------------------------------------------------
     function refreshStats(){
@@ -377,3 +377,4 @@
   </script>
 </body>
 </html>
+
